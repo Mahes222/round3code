@@ -85,13 +85,13 @@ if "game" not in st.session_state:
         st.session_state.b1 = Board(st.session_state.size)
         st.rerun()
 
-
 if "game" in st.session_state:
-    column = st.slider("Select starting column:", 1, st.session_state.size)
-    color = st.text_input("Enter colors (e.g., 'rrg'):")
-    put = st.button("Put Color")
+    with st.form("round"):
+        column = st.slider("Select starting column:", 1, st.session_state.size)
+        color = st.text_input("Enter colors (e.g., 'rrg'):")
+        put = st.form_submit_button("Put Color")
 
-    if put:
-        if not st.session_state.b1.fillcolor(column, color):
-            st.warning("All columns are full!")
-        st.session_state.b1.printgrid()
+        if put:
+            if not st.session_state.b1.fillcolor(column, color):
+                st.warning("All columns are full!")
+            st.session_state.b1.printgrid()
